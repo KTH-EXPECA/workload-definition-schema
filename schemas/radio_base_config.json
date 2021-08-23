@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://expeca.proj.kth.se/radio_base_config.json",
+    "title": "RadioBaseConfig",
+    "description": "Low-level definition of configuration parameters for a server-side software-defined radio.",
+    "type": "object",
+    "examples": [
+        {
+            "wifiap": {
+                "type": "wifiap",
+                "ssid": "testbed_wifi",
+                "channel": "auto"
+            }
+        }
+    ],
+    "properties": {
+    },
+    "required": [],
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "description": "Identifier for the base radio configuration to use.",
+                "examples": [
+                    "wifiap"
+                ]
+            }
+        },
+        "required": ["type"],
+        "additionalProperties": true
+    }
+}

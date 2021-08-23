@@ -4,28 +4,21 @@
     "title": "WorkloadScenario",
     "description": "A workload scenario for the testbed, running one or more workloads in parallel.",
     "type": "object",
-    "additionalProperties": {"$ref": "#/$defs/workload" },
+    "additionalProperties": {"$ref": "workload.json" },
     "required": [],
     "properties": {},
-
-    "$defs": {
-        "workload": {
-            "type": "object",
-            "properties": {
-                "client-device": {"type": "string"},
-                "num-clients": {"type": "integer"},
-                "client-workload": {"type": "string"},
-                "backend-workload": {"type": "string"},
+    "examples": [
+        {
+            "workload_wifi": {
+                "client-device": "generic",
+                "num-clients": 3,
+                "client-workload": "client-test-wkld-1",
+                "backend-workload": "backend-test-wkld-1",
                 "network": {
-                    "type": "object",
-                    "properties": {
-                        "base": {"type": "string"},
-                        "client": {"type": "string"}
-                    },
-                    "required": ["base", "client"]
+                    "base": "wifiap",
+                    "client": "native"
                 }
-            },
-            "required": ["client-device", "num-clients", "client-workload", "backend-workload", "network"]
+            }
         }
-    }
+    ]
 }

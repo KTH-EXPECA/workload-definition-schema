@@ -1,0 +1,55 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://expeca.proj.kth.se/workload.json",
+    "title": "WorkloadDefinition",
+    "description": "High level definition of a workload",
+    "type": "object",
+    "properties": {
+        "client-device": {
+            "type": "string"
+        },
+        "num-clients": {
+            "type": "integer"
+        },
+        "client-workload": {
+            "type": "string"
+        },
+        "backend-workload": {
+            "type": "string"
+        },
+        "network": {
+            "type": "object",
+            "properties": {
+                "base": {
+                    "type": "string"
+                },
+                "client": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "base",
+                "client"
+            ]
+        }
+    },
+    "required": [
+        "client-device",
+        "num-clients",
+        "client-workload",
+        "backend-workload",
+        "network"
+    ],
+    "examples": [
+        {
+            "client-device": "generic",
+            "num-clients": 3,
+            "client-workload": "client-test-wkld-1",
+            "backend-workload": "backend-test-wkld-1",
+            "network": {
+                "base": "wifiap",
+                "client": "native"
+            }
+        }
+    ]
+}
