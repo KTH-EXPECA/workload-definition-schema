@@ -70,5 +70,5 @@
         "client-workload",
         "backend-workload",
         "network"
-    ],
+    ]
 }
