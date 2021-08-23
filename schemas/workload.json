@@ -6,25 +6,56 @@
     "type": "object",
     "properties": {
         "client-device": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifier to match against available client device types.",
+            "default": "generic",
+            "examples": [
+                {"client-device": "generic"}
+            ]
         },
         "num-clients": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of clients to instantiate for this workload. A negative value indicates to use all remaining available clients; having more than one workload with a negative value assigned to this property in a scenario will cause an error to be raised.",
+            "examples": [
+                {"num-clients": 12},
+                {"num-clients": -1}
+            ]
         },
         "client-workload": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifier corresponding to the client workload configuration to use.",
+            "examples": [
+                {
+                    "client-workload": "base-client-workload-1"
+                }
+            ]
         },
         "backend-workload": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifier corresponding to the backend workload configuration to use.",
+            "examples": [
+                {"backend-workload": "base-backend-workload-1"}
+            ]
         },
         "network": {
             "type": "object",
+            "description": "Network configuration for this workload.",
+            "examples": [
+                {
+                    "network": {
+                        "base": "wifi-ap-base",
+                        "client": "wifi-client-native"
+                    }
+                }
+            ],
             "properties": {
                 "base": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "TODO"
                 },
                 "client": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "TODO"
                 }
             },
             "required": [
@@ -40,16 +71,4 @@
         "backend-workload",
         "network"
     ],
-    "examples": [
-        {
-            "client-device": "generic",
-            "num-clients": 3,
-            "client-workload": "client-test-wkld-1",
-            "backend-workload": "backend-test-wkld-1",
-            "network": {
-                "base": "wifiap",
-                "client": "native"
-            }
-        }
-    ]
 }

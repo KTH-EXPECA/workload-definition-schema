@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://expeca.proj.kth.se/definition.json",
+    "title": "Workload scenario definition file",
+    "description": "Testbed workloads are defined in YAML files containing information about the desired network configurations and computational workloads to be deployed. We call these \"workload scenarios\" or simply \"scenarios\". This document describes the schema these files must follow, and will also serve as a guideline for the design and construction of the software necessary to parse these configurations.",
+    "type": "object",
+    "required": [
+        "version", 
+        "workloads"
+    ],
+    "properties": {
+        "version": {
+            "type": "integer",
+            "default": 1,
+            "description": "Indicates which version of the specification this definition file adheres to. For now, should be set explicitly to 1."
+        },
+        "workloads": {
+            "description": "Dictionary which contains definitions for workloads running in parallel. Each key-value pair corresponds to a workload name and its definition.",
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": {
+                "$ref": "workload.json"
+            }
+        }
+    },
+    "examples": [
+        {
+            "version": 1,
+            "workloads": {
+                "wl1": {
+                    "client-device": "generic",
+                    "num-clients": 3,
+                    "client-workload": "cleave-client",
+                    "cloudlet-workload": "cleave-backend",
+                    "network": {
+                        "base": "wifi-ap",
+                        "client": "wifi-native"
+                    }
+                }
+            },
+            "client-workload-configs": {
+                "cleave-client": {
+                    "image": "cleave-plant:latest"
+                }
+            },
+            "backend-workload-configs": {
+                "cleave-backend": {
+                    "image": "cleave-controller:latest"
+                }
+            },
+            "radio-base-configs": {
+                "wifi-ap": {
+                    "config-img": "wifiap:latest",
+                    "params": {
+                        "ssid": "testbed_wifi",
+                        "channel": "auto"
+                    }
+                }
+            },
+            "radio-client-configs": {
+                "wifi-native": {
+                    "type": "native"
+                }
+            }
+        }
+    ]
+}
