@@ -1,0 +1,24 @@
+# automatically deploys the documentation on github pages
+---
+name: ci 
+on:
+  push:
+    branches: 
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - run: pip install json-schema-for-humans
+      - run: python build.py
+      
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: site # The folder the action should deploy.
+...

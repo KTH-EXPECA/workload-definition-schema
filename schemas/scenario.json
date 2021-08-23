@@ -1,0 +1,31 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://expeca.proj.kth.se/scenario.json",
+    "title": "WorkloadScenario",
+    "description": "A workload scenario for the testbed, running one or more workloads in parallel.",
+    "type": "object",
+    "additionalProperties": {"$ref": "#/$defs/workload" },
+    "required": [],
+    "properties": {},
+
+    "$defs": {
+        "workload": {
+            "type": "object",
+            "properties": {
+                "client-device": {"type": "string"},
+                "num-clients": {"type": "integer"},
+                "client-workload": {"type": "string"},
+                "backend-workload": {"type": "string"},
+                "network": {
+                    "type": "object",
+                    "properties": {
+                        "base": {"type": "string"},
+                        "client": {"type": "string"}
+                    },
+                    "required": ["base", "client"]
+                }
+            },
+            "required": ["client-device", "num-clients", "client-workload", "backend-workload", "network"]
+        }
+    }
+}
